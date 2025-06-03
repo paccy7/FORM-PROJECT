@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Password Validation</title>
+  </head>
+  <body>
+    <div id="app">
+    <script type="module" src="/src/main.ts"></script>
+     <div class="form-container">
+    <h2>Login</h2>
+    <form id="loginForm" onsubmit="return validateForm()">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" />
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" />
+
+      <div class="error" id="errorMessage"></div>
+
+      <button type="submit">Login</button>
+    </form>
+  </div>
+</div>
+  <script>
+    function validateForm() {
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const errorMessage = document.getElementById("errorMessage");
+
+      if (username === "" || password === "") {
+        errorMessage.textContent = "Both fields are required.";
+        return false;
+      }
+
+      if (password.length < 6) {
+        errorMessage.textContent = "Password must be at least 6 characters long.";
+        return false;
+      }
+
+      errorMessage.textContent = ""; // Clear previous errors
+      alert("Form submitted successfully!");
+      return true;
+    }
+  </script>
+  </body>
+</html>

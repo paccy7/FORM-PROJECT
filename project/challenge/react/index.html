@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Password Validation</title>
+    <style>
+      .form-container {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-family: Arial, sans-serif;
+      }
+      .error {
+        color: red;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div class="form-container">
+        <h2>Login</h2>
+        <form id="loginForm" onsubmit="return validateForm()">
+          <label for="username">Username:</label>
+          <input type="text" id="username" name="username" required />
+
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" required />
+
+          <div class="error" id="errorMessage"></div>
+
+          <button type="submit">Login</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- External TS Script (if used in your app like Vite) -->
+    <script type="module" src="/src/main.ts"></script>
+
+    <!-- Inline Validation Script -->
+    <script>
+      function validateForm() {
+        const username = document.getElementById("username").value.trim();
+        const password = document.getElementById("password").value.trim();
+        const errorMessage = document.getElementById("errorMessage");
+
+        if (username === "" || password === "") {
+          errorMessage.textContent = "Both fields are required.";
+          return false;
+        }
+
+        if (password.length < 6) {
+          errorMessage.textContent = "Password must be at least 6 characters long.";
+          return false;
+        }
+
+        errorMessage.textContent = ""; // Clear previous errors
+        alert("Form submitted successfully!");
+        return true;
+      }
+    </script>
+  </body>
+</html>
